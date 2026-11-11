@@ -19,8 +19,8 @@ const APP_CONFIG = {
   // ----------------------------------------------------------
   //  BACKEND (Render)
   // ----------------------------------------------------------
-  BACKEND_URL:    'https://backend-sanitization-ltr33-1.onrender.com',      // e.g. https://your-app.onrender.com  (no trailing slash)
-  BACKEND_WS_URL: 'wss://backend-sanitization-ltr33-1.onrender.com',     // e.g. wss://your-app.onrender.com
+  BACKEND_URL:    'https://backend-sanitization-ltr333.onrender.com',      // e.g. https://your-app.onrender.com  (no trailing slash)
+  BACKEND_WS_URL: 'wss://backend-sanitization-ltr333.onrender.com',     // e.g. wss://your-app.onrender.com
 
   // ----------------------------------------------------------
   //  CONNECTION RESILIENCE
