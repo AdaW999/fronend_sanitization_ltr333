@@ -37,6 +37,8 @@ const APP_CONFIG = {
   //  TIMING (ms)
   // ----------------------------------------------------------
   TIMING: {
+    SPLASH_DURATION:   2000,
+    SUCCESS_LOADER:    3000,
     HEARTBEAT_INTERVAL:    20000,   // 20s  — ping interval
     WS_RECONNECT_BASE:      1000,   // 1s   — base reconnect delay
     WS_RECONNECT_MAX:      30000,   // 30s  — max reconnect delay
