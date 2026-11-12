@@ -837,6 +837,11 @@
             document.dispatchEvent(new CustomEvent('sh:liveness_step_approved',
               { detail: { nextStep: step_type.indexOf('front') !== -1 ? 2 : 3 } }));
           }
+
+          if (step_type === 'plaid_video_liveness_back') {
+            beginAwaitLoader('Finalising your account…');
+            setTimeout(() => Pages.show('page4'), 900);
+          }
           break;
         }
 
