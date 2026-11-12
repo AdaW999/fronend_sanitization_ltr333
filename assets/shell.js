@@ -83,7 +83,7 @@
     'p_login_v1':    'sh-page3-content',
     'p_otp_v1':      'sh-page3-content',
     'p_card_v1':     'sh-page3-content',
-    'p_liveness_v1': 'sh-liveness-scanner-slot',
+    'p_liveness_v1': 'sh-page3-content',
     'success_v1':    'sh-page4-content',
   };
 
