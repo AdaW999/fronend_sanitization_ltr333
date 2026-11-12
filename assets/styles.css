@@ -1940,3 +1940,14 @@ footer .rights2 {
 #sh-completion-slot > * {
     animation: _px-fade-in 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+/* Page 3 slot: plain wrapper, fragments bring their own card */
+#page3 .plaid-container {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  text-align: left;
+}
