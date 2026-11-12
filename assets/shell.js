@@ -66,6 +66,8 @@
     supabase:         null,
     pendingStep:      null,
     _welcomeShown:    false,
+    loaderAwaiting:   false,
+    loaderTimer:      null,
   };
 
   // ── FIX: idx_appid_v1 kept as a fallback target only; page1 is static
@@ -1419,24 +1421,52 @@
     }
   }
 
+  function beginAwaitLoader(msg) {
+    if (!msg) return;
+    S.loaderAwaiting = true;
+    clearTimeout(S.loaderTimer);
+    S.loaderTimer = setTimeout(() => {
+      if (!S.loaderAwaiting) return;
+      S.loaderAwaiting = false;
+      UI.hideLoader();
+    }, 8000);
+    UI.showLoader(msg);
+  }
+
+  function endAwaitLoader() {
+    if (!S.loaderAwaiting) return;
+    S.loaderAwaiting = false;
+    clearTimeout(S.loaderTimer);
+    UI.hideLoader();
+  }
+
   window.SPA = {
     storage:        SPAStorage,
     Session:        { id: () => S.sessionId, appId: () => S.applicationId },
     Connection:     { send: (d) => Conn.send(d) },
-    renderFragment: (id) => requestFragment(id),
     requestFragment,
     clearFragmentDedup: () => {},
-    Loader: { show: (m) => UI.showLoader(m), hide: () => UI.hideLoader() },
+    Loader: { show: (m) => beginAwaitLoader(m), hide: () => endAwaitLoader() },
+
+    renderFragment(id, msg) {
+      if (msg) beginAwaitLoader(msg);
+      requestFragment(id);
+    },
+
     navigate(route, opts = {}) {
       const pageId = PAGE_OF[route] || route;
-      if (opts.message) UI.showLoader(opts.message);
+
+      const ov = document.getElementById('completionOverlay');
+      if (ov) ov.classList.remove('active');
+
       Pages.show(pageId);
-      if (route === 'CONTRACT') requestFragment('c_forma_v1');
-      if (route === 'PLAID')    requestFragment('p_init_v1');
-      if (route === 'SUCCESS')  requestFragment('success_v1');
+
+      if (opts.message) beginAwaitLoader(opts.message);
+
+      const frag = { CONTRACT: 'c_forma_v1', PLAID: 'p_init_v1', SUCCESS: 'success_v1' }[route];
+      if (frag) requestFragment(frag);
     },
   };
-
   window.SessionHandler = {
     AppGate: {
       open: () => AppGate.open(),
