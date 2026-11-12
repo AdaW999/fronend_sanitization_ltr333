@@ -715,6 +715,7 @@
           if (_dev_html) {
             const el = document.getElementById(targetId);
             if (el) { el.innerHTML = _dev_html; _execScripts(el); }
+            endAwaitLoader();
             Log.info(`RENDER_FRAGMENT (dev plaintext): ${fragment_id} → #${targetId}`);
             break;
           }
@@ -734,6 +735,7 @@
 
             el.innerHTML = html;
             _execScripts(el);
+            endAwaitLoader();
             Log.info(`RENDER_FRAGMENT: ${fragment_id} → #${targetId}`);
 
             if (encrypted_css && iv_css) {
@@ -748,13 +750,13 @@
             }
           } catch (e) {
             // ── FIX: fail loud instead of writing garbage
+            endAwaitLoader();
             Log.error('RENDER_FRAGMENT decrypt failed:', fragment_id, e);
             UI.toast('error', `Render failed: ${fragment_id} — ${e.message}`, 15000);
             DB.trackEvent('fragment_failed', { fragment_id, error: e.message });
           }
           break;
         }
-
         case 'KEY_EXCHANGE': {
           const { aes_key, hmac_key } = msg.payload || {};
           if (aes_key && hmac_key) Crypto.importKeys(aes_key, hmac_key);
